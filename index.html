@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Visualization of ResNet</title>
+
+    <script src="index.js"></script>
+
+    <script src="https://distill.pub/template.v2.js"></script>
+
+
+
+    <script type="text/javascript" src="src/data/density_words.js"></script>
+
+    <script type="text/javascript" src="src/data/density_activations.js"></script>
+
+    <script type="text/javascript" src="src/data/words_most.js"></script>
+
+    <script type="text/javascript" src="src/data/words_most_count.js"></script>
+
+    <script type="text/javascript" src="src/data/1gram_most.js"></script>
+
+    <script type="text/javascript" src="src/data/1gram_most_count.js"></script>
+
+    <script type="text/javascript" src="src/data/jasper_structure.js"></script>
+
+    <script type="text/javascript" src="src/data/cherry.js"></script>
+
+    <script type="text/javascript" src="src/data/float_heatmap.js"></script>
+
+    <script type="text/javascript" src="src/data/length_word.js"></script>
+
+    <script type="text/javascript" src="src/data/length_gram.js"></script>
+
+    <script type="text/javascript" src="src/data/gender_plot.js"></script>
+
+    <script type="text/javascript" src="src/data/male.js"></script>
+
+    <script type="text/javascript" src="src/data/female.js"></script>
+
+    <script type="text/javascript" src="src/data/explain_mel.js"></script>
+
+    <script type="text/javascript" src="src/data/dead.js"></script>
+
+
+
+    <script type="text/javascript" src="src/globals.js"></script>
+
+    <script type="text/javascript" src="src/drawer.js"></script>
+
+    <script type="text/javascript" src="src/tabs.js"></script>
+
+    <script type="text/javascript" src="src/words_widget.js"></script>
+
+    <script type="text/javascript" src="src/horizontal_scroll.js"></script>
+
+    <script type="text/javascript" src="src/vertical_scroll.js"></script>
+
+    <script type="text/javascript" src="src/audio_player.js"></script>
+
+    <script type="text/javascript" src="src/graph.js"></script>
+
+    <script type="text/javascript" src="src/virtual_scroll.js"></script>
+
+    <script type="text/javascript" src="src/jasper_structure_scroll.js"></script>
+
+    <script type="text/javascript" src="src/activation_viewer.js"></script>
+
+    <script type="text/javascript" src="src/network_selector.js"></script>
+
+    <script type="text/javascript" src="src/gender_percent.js"></script>
+
+    <script type="text/javascript" src="src/gender_heatmap.js"></script>
+
+    <script type="text/javascript" src="src/overview_chart.js"></script>
+
+    <script type="text/javascript" src="src/main.js"></script>
+
+    <script type="text/javascript" src="src/explain_mel.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
+
+
+    <script>
+
+
+
+        main = function(){
+
+            // print_table();
+
+            load_all_components();
+
+
+
+        }
+
+
+
+        print_table = function(){
+
+            const main_body = document.getElementById("main_body");
+
+            var output = "<table>" ;
+
+
+
+            for (li in layers){
+
+                if (li == layers.length -1 ) break;
+
+                var layer = layers[li];
+
+                output += "<tr>";
+
+                output += "<th> Layer " + li + ": " + layer_names[li] + "</th>"
+
+                for(let i=0;i<Math.min(layer, width);i++) output += "<td> <img src='index/" + li + "_" + i + ".png'></td>";
+
+                output += "</tr>";
+
+            }
+
+
+
+            output += "</table>";
+
+            main_body.innerHTML = output;
+
+
+
+        }
+
+
+
+
+
+    </script>
+
+
+
+    <style>
+
+<!--        th td {-->
+
+<!--            margin: 20px;-->
+
+<!--            padding: 20px;-->
+
+<!--        }-->
+
+        table{border-spacing:10px; border-collapse: separate;}
+
+    </style>
+
+</head>
+
+<body onload="main()">
+
+<div id="main_body"></div>
+
+
+
+<figure class='interactions-general'>
+
+    <d-figure>
+
+        <div id="whole_graph" class="l-screen-inset" style='height: 400px; padding:0'></div>
+
+    </d-figure>
+
+</figure>
+
+<div id='selected_image' class='interactions-general' style='margin-top: 0px; text-align:center; margin:auto; width:100%;'>
+
+</div>
+
+<figcaption>
+
+
+
+</figcaption>
+
+
+
+</body>
+
+</html>
